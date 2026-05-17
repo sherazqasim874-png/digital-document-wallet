@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Digital Wallet</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f4f6f9;
+        }
+
+        /* Header */
+
+        .header{
+            background:#1e3a8a;
+            color:white;
+            padding:15px;
+            text-align:center;
+        }
+
+        /* Login Box */
+
+        .container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:80vh;
+        }
+
+        .login-box{
+            background:white;
+            width:350px;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .login-box h2{
+            text-align:center;
+            color:#1e3a8a;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:#1e3a8a;
+            color:white;
+            border:none;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#0f2557;
+        }
+
+        .register-link{
+            text-align:center;
+            margin-top:15px;
+        }
+
+        .register-link a{
+            color:#1e3a8a;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        /* Footer */
+
+        .footer{
+            background:#1e3a8a;
+            color:white;
+            text-align:center;
+            padding:10px;
+            position:fixed;
+            bottom:0;
+            width:100%;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <h1>Digital Document Wallet</h1>
+    </div>
+
+    <!-- Login Section -->
+
+    <div class="container">
+
+        <div class="login-box">
+
+            <h2>Login</h2>
+
+            <input type="email" id="email" placeholder="Enter Email">
+
+            <input type="password" id="password" placeholder="Enter Password">
+
+            <button onclick="login()">Login</button>
+
+            <div class="register-link">
+                Don't have an account?
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+        © 2026 Digital Wallet Project
+    </div>
+
+    <script>
+
+    function login(){
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        fetch("login.php",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+
+            body:"email="+email+"&password="+password
+
+        })
+
+        .then(res => res.text())
+
+        .then(data => {
+
+            if(data == "success"){
+
+                alert("Login Successful");
+
+                window.location.href = "dashboard.html";
+
+            }
+            else{
+
+                alert(data);
+
+            }
+
+        });
+
+    }
+
+    </script>
+
+</body>
+</html>
