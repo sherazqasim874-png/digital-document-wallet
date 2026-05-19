@@ -1,0 +1,256 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:#eef2ff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:white;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.navbar h1{
+    font-size:32px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logout-btn{
+    background:red;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:darkred;
+    transform:scale(1.05);
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:40px auto;
+    flex:1;
+}
+
+/* UPLOAD BOX */
+
+.upload-box{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    margin-bottom:40px;
+    transition:0.3s;
+}
+
+.upload-box:hover{
+    transform:translateY(-5px);
+}
+
+.upload-box h2{
+    color:#1e3a8a;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+/* INPUTS */
+
+input[type="text"],
+select,
+input[type="file"]{
+    width:100%;
+    padding:16px;
+    margin-bottom:20px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:16px;
+    transition:0.3s;
+    background:#f9fafb;
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="file"]:focus{
+    border-color:#2563eb;
+    outline:none;
+    box-shadow:0 0 8px rgba(37,99,235,0.4);
+}
+
+/* UPLOAD BUTTON */
+
+.upload-btn{
+    width:100%;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    border:none;
+    padding:16px;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.upload-btn:hover{
+    transform:scale(1.02);
+    opacity:0.95;
+}
+
+/* DOCUMENT SECTION */
+
+.documents{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+
+.documents h2{
+    color:#1e3a8a;
+    margin-bottom:30px;
+    font-size:28px;
+}
+
+/* DOCUMENT GRID */
+
+.doc-card{
+    background:#f9fafb;
+    border-left:6px solid #2563eb;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    transition:0.3s;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.doc-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.doc-card h3{
+    color:#1e3a8a;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.doc-card p{
+    margin-bottom:10px;
+    font-size:16px;
+    color:#374151;
+}
+
+/* BUTTONS */
+
+.open-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-top:15px;
+    margin-right:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.open-btn:hover{
+    background:#1d4ed8;
+    transform:scale(1.05);
+}
+
+.delete-btn{
+    display:inline-block;
+    background:red;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-top:15px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.delete-btn:hover{
+    background:darkred;
+    transform:scale(1.05);
+}
+
+/* EMPTY MESSAGE */
+
+.documents p{
+    font-size:17px;
+}
+
+/* FOOTER */
+
+footer{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+    font-size:16px;
+    box-shadow:0 -4px 15px rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+        padding:20px;
+    }
+
+    .navbar h1{
+        font-size:26px;
+    }
+
+    .container{
+        width:95%;
+    }
+
+    .upload-box,
+    .documents{
+        padding:20px;
+    }
+
+    .doc-card{
+        padding:20px;
+    }
+
+    .open-btn,
+    .delete-btn{
+        display:block;
+        width:100%;
+        text-align:center;
+        margin-bottom:10px;
+    }
+
+}
