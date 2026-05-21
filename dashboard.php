@@ -31,17 +31,89 @@ include "db.php";
 
     <div class="navbar">
 
+    <div class="logo-section">
+
+        <img src="images/logo.png" class="logo">
+
         <h1>Digital Document Wallet</h1>
 
-        <a href="logout.php" class="logout-btn">
-            Logout
-        </a>
-
     </div>
+
+    <a href="logout.php" class="logout-btn">
+        Logout
+    </a>
+
+</div>
 
     <!-- Main Container -->
 
     <div class="container">
+        <!-- Statistics Cards -->
+         <?php
+
+/* TOTAL DOCUMENTS */
+
+$total_query =
+mysqli_query($conn,
+"SELECT * FROM documents");
+
+$total_docs =
+mysqli_num_rows($total_query);
+
+
+/* PDF FILES */
+
+$pdf_query =
+mysqli_query($conn,
+"SELECT * FROM documents
+WHERE file_name LIKE '%.pdf'");
+
+$pdf_docs =
+mysqli_num_rows($pdf_query);
+
+
+/* CERTIFICATES */
+
+$certificate_query =
+mysqli_query($conn,
+"SELECT * FROM documents
+WHERE category='Certificates'");
+
+$certificate_docs =
+mysqli_num_rows($certificate_query);
+
+?>
+
+<div class="stats-container">
+
+    <div class="stat-card"
+    onclick="filterDocs('all')">
+
+        <h2>Total Documents</h2>
+
+        <p><?php echo $total_docs; ?></p>
+
+    </div>
+
+    <div class="stat-card"
+    onclick="filterDocs('pdf')">
+
+        <h2>PDF Files</h2>
+
+        <p><?php echo $pdf_docs; ?></p>
+
+    </div>
+
+    <div class="stat-card"
+    onclick="filterDocs('Certificates')">
+
+        <h2>Certificates</h2>
+
+        <p><?php echo $certificate_docs; ?></p>
+
+    </div>
+
+</div>
 
         <!-- Upload Section -->
 
@@ -102,6 +174,16 @@ include "db.php";
         </div>
 
         <!-- Documents Section -->
+         <!-- Search Bar -->
+
+<div class="search-box">
+
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search Documents...">
+
+</div>
 
         <div class="documents">
 
@@ -119,7 +201,11 @@ include "db.php";
 
             ?>
 
-            <div class="doc-card">
+            <div class="doc-card"
+
+data-category="<?php echo $row['category']; ?>"
+
+data-file="<?php echo $row['file_name']; ?>">
 
                 <h3>
                     <?php echo $row['doc_name']; ?>
@@ -185,6 +271,61 @@ include "db.php";
         </p>
 
     </footer>
+    <script>
+
+function filterDocs(type){
+
+    let cards =
+    document.querySelectorAll(".doc-card");
+
+    cards.forEach(function(card){
+
+        let category =
+        card.getAttribute("data-category");
+
+        let file =
+        card.getAttribute("data-file");
+
+        /* SHOW ALL */
+
+        if(type === "all"){
+
+            card.style.display = "block";
+        }
+
+        /* SHOW PDF FILES */
+
+        else if(type === "pdf"){
+
+            if(file.toLowerCase().endsWith(".pdf")){
+
+                card.style.display = "block";
+
+            }else{
+
+                card.style.display = "none";
+            }
+        }
+
+        /* SHOW CATEGORY */
+
+        else{
+
+            if(category === type){
+
+                card.style.display = "block";
+
+            }else{
+
+                card.style.display = "none";
+            }
+        }
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
